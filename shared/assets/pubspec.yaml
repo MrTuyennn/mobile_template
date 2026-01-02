@@ -1,5 +1,6 @@
 name: assets
-description: "A new Flutter package project."
+description: Assets module
+publish_to: "none"
 version: 0.0.1
 homepage:
 

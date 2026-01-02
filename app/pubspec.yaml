@@ -17,6 +17,8 @@ dependencies:
     path: ../packages/core
   assets:
     path: ../shared/assets
+  theme:
+    path: ../shared/theme
 
 dev_dependencies:
   flutter_test:
