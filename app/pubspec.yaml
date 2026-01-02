@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
 
   cupertino_icons: ^1.0.8
   core:
@@ -21,6 +23,8 @@ dependencies:
     path: ../shared/theme
   widget:
     path: ../shared/widget
+  l10n:
+    path: ../shared/l10n
 
 dev_dependencies:
   flutter_test:
