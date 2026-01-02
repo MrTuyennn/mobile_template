@@ -1,0 +1,75 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Fun ANSI color codes
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+MAGENTA='\033[0;35m'
+CYAN='\033[0;36m'
+BOLD='\033[1m'
+RESET='\033[0m'
+
+# Cool ASCII art
+function print_header() {
+  echo "${MAGENTA}"
+  echo "╔═══════════════════════════════════════════╗"
+  echo "║  🚀 ${BOLD}COMMIT MESSAGE VALIDATOR${RESET}${MAGENTA}  🚀  ║"
+  echo "╚═══════════════════════════════════════════╝${RESET}"
+}
+
+# Fun emojis for commit types
+function get_commit_emoji() {
+  case "$1" in
+    "feat") echo "✨" ;;
+    "fix") echo "🐛" ;;
+    "docs") echo "📚" ;;
+    "style") echo "💅" ;;
+    "refactor") echo "♻️" ;;
+    "test") echo "🧪" ;;
+    "chore") echo "🧹" ;;
+    *) echo "❓" ;;
+  esac
+}
+
+print_header
+
+echo "${CYAN}💬 Checking commit message format...${RESET}"
+
+commit_msg=$(cat $1)
+pattern="^\[([A-Z0-9]+-[0-9]+|[a-zA-Z-]+)(, ?([A-Z0-9]+-[0-9]+|[a-zA-Z]+))*\] #(feat|fix|docs|style|refactor|test|chore): .*$"
+
+if [[ ! $commit_msg =~ $pattern ]]; then
+  echo "${RED}${BOLD}✋ Oops! Your commit message doesn't follow the team's format.${RESET}"
+  echo ""
+  echo "${YELLOW}Here's what a proper commit should look like:${RESET}"
+  echo "  ${GREEN}[TASK-123]${RESET} ${CYAN}#feat:${RESET} Add amazing new feature"
+  echo "  ${GREEN}[PROJECT-456]${RESET} ${CYAN}#fix:${RESET} Fix critical bug in login flow"
+  echo "  ${GREEN}[refactor]${RESET} ${CYAN}#style:${RESET} Improve code readability"
+  echo ""
+  echo "${YELLOW}Valid types are:${RESET}"
+  echo "  $(get_commit_emoji "feat") ${GREEN}feat${RESET}: New features"
+  echo "  $(get_commit_emoji "fix") ${GREEN}fix${RESET}: Bug fixes"
+  echo "  $(get_commit_emoji "docs") ${GREEN}docs${RESET}: Documentation changes"
+  echo "  $(get_commit_emoji "style") ${GREEN}style${RESET}: Code style changes"
+  echo "  $(get_commit_emoji "refactor") ${GREEN}refactor${RESET}: Code refactoring"
+  echo "  $(get_commit_emoji "test") ${GREEN}test${RESET}: Adding or updating tests"
+  echo "  $(get_commit_emoji "chore") ${GREEN}chore${RESET}: Maintenance tasks"
+  echo ""
+  echo "${RED}${BOLD}Commit aborted! Try again with the correct format.${RESET}"
+  exit 1
+fi
+
+# Extract task ID and commit type for personalized message
+task_id=$(echo $commit_msg | sed -E 's/^\[([^]]+)\].*/\1/')
+commit_type=$(echo $commit_msg | sed -E 's/.*#([a-z]+):.*/\1/')
+emoji=$(get_commit_emoji "$commit_type")
+
+echo "${GREEN}${BOLD}✅ Awesome! Your commit message looks great!${RESET}"
+echo "${CYAN}$emoji Task: ${YELLOW}$task_id${RESET}"
+echo "${CYAN}💻 Type: ${YELLOW}$commit_type${RESET}"
+echo ""
+echo "${GREEN}Proceeding with commit...${RESET}"
+
+exit 0

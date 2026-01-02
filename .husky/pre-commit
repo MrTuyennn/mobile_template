@@ -1,0 +1,101 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Exit on error
+set -e
+
+echo "🔍 Running pre-commit checks on changed Dart files..."
+
+# Get all staged Dart files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "\.dart$" || echo "")
+
+# Exit if no Dart files are staged
+if [ -z "$STAGED_FILES" ]; then
+    echo "✅ No Dart files staged. Skipping checks."
+    exit 0
+fi
+
+# Function to check if command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Ensure Flutter is in PATH
+if ! command_exists flutter; then
+    echo "❌ Flutter not found in PATH. Please ensure Flutter is properly installed."
+    exit 1
+fi
+
+# Save unstaged changes before running checks (to keep git state clean)
+echo "📦 Stashing unstaged changes..."
+git stash push --keep-index --include-untracked --quiet
+
+echo "📊 Analyzing changed files..."
+
+# Run Flutter analyze on each file separately to identify which files fail
+ANALYZE_FAILED=false
+FAILED_FILES=()
+
+for file in $STAGED_FILES; do
+    echo "Checking: $file"
+    if ! flutter analyze "$file" > /dev/null 2>&1; then
+        ANALYZE_FAILED=true
+        FAILED_FILES+=("$file")
+        echo "❌ $file failed analysis"
+    fi
+done
+
+if [ "$ANALYZE_FAILED" = true ]; then
+    echo "❌ Analysis failed for these files:"
+    for file in "${FAILED_FILES[@]}"; do
+        echo "   - $file"
+    done
+    echo "Please fix the issues and try again."
+    
+    # Restore unstaged changes
+    git stash pop --quiet || true
+    exit 1
+fi
+
+echo "✅ Analysis passed for all files"
+
+echo "🎨 Checking formatting..."
+FORMAT_FAILED=false
+FORMAT_FAILED_FILES=()
+
+for file in $STAGED_FILES; do
+    if ! dart format --output=none --set-exit-if-changed "$file" > /dev/null 2>&1; then
+        FORMAT_FAILED=true
+        FORMAT_FAILED_FILES+=("$file")
+        echo "❌ $file needs formatting"
+    fi
+done
+
+if [ "$FORMAT_FAILED" = true ]; then
+    echo "❌ Formatting issues detected in these files:"
+    for file in "${FORMAT_FAILED_FILES[@]}"; do
+        echo "   - $file"
+    done
+    
+    echo "Running formatter on failed files..."
+    for file in "${FORMAT_FAILED_FILES[@]}"; do
+        dart format --output=write "$file"
+    done
+    
+    echo "✅ Files formatted. Please stage the formatting changes and try committing again."
+    
+    # Restore unstaged changes
+    git stash pop --quiet || true
+    exit 1
+fi
+
+echo "✅ Formatting check passed for all files"
+echo "👍 All checks passed!"
+
+# Add formatted files back to staging area
+echo "$STAGED_FILES" | xargs git add
+
+# Restore unstaged changes
+git stash pop --quiet 2>/dev/null || true
+
+exit 0
