@@ -38,7 +38,10 @@ print_header
 echo "${CYAN}💬 Checking commit message format...${RESET}"
 
 commit_msg=$(cat $1)
-pattern="^\[([A-Z0-9]+-[0-9]+|[a-zA-Z-]+)(, ?([A-Z0-9]+-[0-9]+|[a-zA-Z]+))*\] #(feat|fix|docs|style|refactor|test|chore): .*$"
+pattern="#(feat|fix|docs|style|refactor|test|chore): .*$"
+
+# optional when have task issue
+# pattern="^\[([A-Z0-9]+-[0-9]+|[a-zA-Z-]+)(, ?([A-Z0-9]+-[0-9]+|[a-zA-Z]+))*\] #(feat|fix|docs|style|refactor|test|chore): .*$"
 
 if [[ ! $commit_msg =~ $pattern ]]; then
   echo "${RED}${BOLD}✋ Oops! Your commit message doesn't follow the team's format.${RESET}"

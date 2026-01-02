@@ -26,7 +26,7 @@ class _AppState extends State<App> {
         child: Container(
           alignment: .center,
           child: Text(
-            "tuyennnnn",
+            "Test app",
             style: appTextTheme.largeTitle.copyWith(color: appColros.active),
           ),
         ),
