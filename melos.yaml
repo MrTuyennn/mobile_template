@@ -1,0 +1,10 @@
+name: flutter_workspace
+
+packages:
+  - apps/**
+  - packages/**
+
+scripts:
+  gen_assets:
+    run: melos exec --scope="*assets*" -- "./scripts/default_support_vec.sh"
+    description: Re-generate assets files
