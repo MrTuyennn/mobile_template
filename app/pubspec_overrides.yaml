@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: assets,core,theme,widget
+dependency_overrides:
+  assets:
+    path: ../shared/assets
+  core:
+    path: ../packages/core
+  theme:
+    path: ../shared/theme
+  widget:
+    path: ../shared/widget

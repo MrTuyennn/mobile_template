@@ -18,9 +18,9 @@ packages:
     source: hosted
     version: "2.7.0"
   assets:
-    dependency: "direct main"
+    dependency: "direct overridden"
     description:
-      path: "../shared/assets"
+      path: "../assets"
       relative: true
     source: path
     version: "0.0.1"
@@ -64,13 +64,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.19.1"
-  core:
-    dependency: "direct main"
-    description:
-      path: "../packages/core"
-      relative: true
-    source: path
-    version: "0.0.1"
   crypto:
     dependency: transitive
     description:
@@ -79,14 +72,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.7"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.8"
   fake_async:
     dependency: transitive
     description:
@@ -297,7 +282,7 @@ packages:
   theme:
     dependency: "direct main"
     description:
-      path: "../shared/theme"
+      path: "../theme"
       relative: true
     source: path
     version: "0.0.1"
@@ -357,13 +342,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  widget:
-    dependency: "direct main"
-    description:
-      path: "../shared/widget"
-      relative: true
-    source: path
-    version: "0.0.1"
   xml:
     dependency: transitive
     description:

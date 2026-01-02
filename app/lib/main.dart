@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:theme/theme.dart';
+import 'package:widget/widget.dart';
 
 void main() {
   runApp(const App());
@@ -23,12 +24,22 @@ class _AppState extends State<App> {
       darkTheme: AppTheme.dark(isTablet: false).themeData,
       themeMode: ThemeMode.light,
       home: Material(
-        child: Container(
-          alignment: .center,
-          child: Text(
-            "Test app",
-            style: appTextTheme.largeTitle.copyWith(color: appColros.active),
-          ),
+        child: Column(
+          mainAxisAlignment: .center,
+          children: [
+            Text(
+              "Test app",
+              style: appTextTheme.largeTitle.copyWith(color: appColros.active),
+            ),
+            ActionButton.inverseBlue(
+              context: context,
+              wrapContent: true,
+              text: 'tuyen',
+              onPressed: () {
+                /// TODO
+              },
+            ),
+          ],
         ),
       ),
     );

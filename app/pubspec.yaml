@@ -19,6 +19,8 @@ dependencies:
     path: ../shared/assets
   theme:
     path: ../shared/theme
+  widget:
+    path: ../shared/widget
 
 dev_dependencies:
   flutter_test:

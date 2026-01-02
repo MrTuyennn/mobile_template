@@ -1,18 +1,26 @@
 {
   "roots": [
-    "theme"
+    "widget"
   ],
   "packages": [
+    {
+      "name": "widget",
+      "version": "0.0.1",
+      "dependencies": [
+        "flutter",
+        "theme"
+      ],
+      "devDependencies": [
+        "flutter_lints",
+        "flutter_test"
+      ]
+    },
     {
       "name": "theme",
       "version": "0.0.1",
       "dependencies": [
         "assets",
         "flutter"
-      ],
-      "devDependencies": [
-        "flutter_lints",
-        "flutter_test"
       ]
     },
     {
