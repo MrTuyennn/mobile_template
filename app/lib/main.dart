@@ -1,3 +1,4 @@
+import 'package:app_logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:l10n/l10n.dart';
 import 'package:storage/storage.dart';
@@ -61,7 +62,22 @@ class HomePage extends StatelessWidget {
             wrapContent: true,
             text: 'tuyen',
             onPressed: () async {
-              await Storage.instance.vaultBox?.put('Tuyennn', 'Tuyennn');
+              logger.e({
+                "event": "user_login",
+                "status": "success",
+                "user": {
+                  "id": "u_123456",
+                  "email": "user@example.com",
+                  "role": "member",
+                },
+                "device": {
+                  "platform": "android",
+                  "osVersion": "14",
+                  "appVersion": "1.2.0",
+                },
+                "timestamp": "2026-01-03T20:15:30+07:00",
+                "durationMs": 342,
+              });
             },
           ),
         ],
