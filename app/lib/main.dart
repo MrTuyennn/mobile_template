@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:l10n/l10n.dart';
+import 'package:storage/storage.dart';
 import 'package:theme/theme.dart';
 import 'package:widget/widget.dart';
 
@@ -7,8 +8,23 @@ void main() {
   runApp(const App());
 }
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
   const App({super.key});
+
+  @override
+  State<App> createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+  Future<void> _init() async {
+    await Storage.instance.initialize();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +60,8 @@ class HomePage extends StatelessWidget {
             context: context,
             wrapContent: true,
             text: 'tuyen',
-            onPressed: () {
-              /// TODO
+            onPressed: () async {
+              await Storage.instance.vaultBox?.put('Tuyennn', 'Tuyennn');
             },
           ),
         ],

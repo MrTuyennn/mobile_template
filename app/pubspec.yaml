@@ -25,6 +25,8 @@ dependencies:
     path: ../shared/widget
   l10n:
     path: ../shared/l10n
+  storage:
+    path: ../shared/storage
 
 dev_dependencies:
   flutter_test:
