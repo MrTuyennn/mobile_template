@@ -1,3 +1,4 @@
+import 'package:app/routers/router.dart';
 import 'package:app_logger/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:l10n/l10n.dart';
@@ -29,13 +30,15 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       theme: AppTheme.light(isTablet: false).themeData,
       darkTheme: AppTheme.dark(isTablet: false).themeData,
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       themeMode: ThemeMode.light,
-      home: const HomePage(),
+      routerConfig: AppRouter().config(),
+      // routeInformationParser: AppRouter().defaultRouteParser(),
+      // routerDelegate: AppRouter().delegate(),
     );
   }
 }

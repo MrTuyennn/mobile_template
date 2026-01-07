@@ -1,13 +1,21 @@
-# melos_managed_dependency_overrides: assets,core,l10n,theme,widget,storage,app_logger
+# melos_managed_dependency_overrides: assets,l10n,theme,widget,storage,app_logger,home,account,auth,main,notification
 dependency_overrides:
+  account:
+    path: ../packages/account
   app_logger:
     path: ../shared/logger
   assets:
     path: ../shared/assets
-  core:
-    path: ../packages/core
+  auth:
+    path: ../packages/auth
+  home:
+    path: ../packages/home
   l10n:
     path: ../shared/l10n
+  main:
+    path: ../packages/main
+  notification:
+    path: ../packages/notification
   storage:
     path: ../shared/storage
   theme:
