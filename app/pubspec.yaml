@@ -15,8 +15,6 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.8
-  core:
-    path: ../packages/core
   assets:
     path: ../shared/assets
   theme:
