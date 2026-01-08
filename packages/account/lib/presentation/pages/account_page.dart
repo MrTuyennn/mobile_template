@@ -12,6 +12,9 @@ class AccountPage extends StatefulWidget {
 class _AccountPageState extends State<AccountPage> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Material(
+      color: Colors.redAccent,
+      child: Center(child: Text('Account')),
+    );
   }
 }

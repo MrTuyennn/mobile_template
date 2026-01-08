@@ -15,6 +15,16 @@ dependencies:
     path: ../home
   notification:
     path: ../notification
+  account:
+    path: ../account
+  app_logger:
+    path: ../../shared/logger
+  theme:
+    path: ../../shared/theme
+  widget:
+    path: ../../shared/widget
+  assets:
+    path: ../../shared/assets
   auto_route: ^11.1.0
 
 dev_dependencies:

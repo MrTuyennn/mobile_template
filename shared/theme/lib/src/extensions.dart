@@ -117,6 +117,15 @@ extension ContextX on BuildContext {
   /// True if the current device is Tablet
   bool get isTablet => isSmallTablet || isLargeTablet;
 
+  double defaultBottomPadding({double space = 16}) =>
+      mediaQueryViewPadding.bottom + space;
+
+  double defaultTopPadding({double space = 16}) =>
+      mediaQueryViewPadding.top + space;
+
+  double defaultBottomQueryPadding({double space = 16}) =>
+      mediaQueryPadding.bottom + space;
+
   /// Recalculate value base on the current device scale factor
   num scaleFactorValue(num originalValue) {
     if (textScaleFactor < 1) {

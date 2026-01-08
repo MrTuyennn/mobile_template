@@ -1,6 +1,16 @@
-# melos_managed_dependency_overrides: home,notification
+# melos_managed_dependency_overrides: home,notification,account,app_logger,assets,theme,widget
 dependency_overrides:
+  account:
+    path: ../account
+  app_logger:
+    path: ../../shared/logger
+  assets:
+    path: ../../shared/assets
   home:
     path: ../home
   notification:
     path: ../notification
+  theme:
+    path: ../../shared/theme
+  widget:
+    path: ../../shared/widget

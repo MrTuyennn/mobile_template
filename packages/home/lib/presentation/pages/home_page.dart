@@ -13,14 +13,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      child: Center(
-        child: Container(
-          color: Colors.amber,
-          height: 100,
-          width: 100,
-          child: Text('Ngọc tuyên'),
-        ),
-      ),
+      color: Colors.blueAccent,
+      child: Center(child: Text('Home')),
     );
   }
 }
