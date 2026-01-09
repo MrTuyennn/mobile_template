@@ -1,6 +1,10 @@
+import 'package:app/routers/auth_route_guard.dart';
 import 'package:app/routers/router.dart';
 import 'package:app_logger/logger.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:l10n/l10n.dart';
 import 'package:storage/storage.dart';
 import 'package:theme/theme.dart';
@@ -30,28 +34,45 @@ class _AppState extends State<App> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      theme: AppTheme.light(isTablet: false).themeData,
-      darkTheme: AppTheme.dark(isTablet: false).themeData,
-      localizationsDelegates: L10n.localizationsDelegates,
-      supportedLocales: L10n.supportedLocales,
-      themeMode: ThemeMode.light,
-      routerConfig: AppRouter().config(),
-      // routeInformationParser: AppRouter().defaultRouteParser(),
-      // routerDelegate: AppRouter().delegate(),
+    return ProviderScope(
+      child: HookConsumer(
+        builder: (context, ref, child) {
+          final router = useMemoized(
+            () => AppRouter(authRouteGuard: AuthRouteGuard(ref: ref)),
+          );
+          return MaterialApp.router(
+            theme: AppTheme.light(isTablet: false).themeData,
+            darkTheme: AppTheme.dark(isTablet: false).themeData,
+            localizationsDelegates: L10n.localizationsDelegates,
+            supportedLocales: L10n.supportedLocales,
+            themeMode: ThemeMode.light,
+
+            routeInformationParser: router.defaultRouteParser(),
+            routerDelegate: router.delegate(),
+          );
+        },
+      ),
     );
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final theme = context.theme;
     final appColros = theme.appColors;
     final appTextTheme = theme.appTextTheme;
     final l10n = L10n.of(context);
+
+    final appState = ref.watch(appStateProvider.notifier);
+
+    useEffect(() {
+      appState.setAuthenticated(true);
+      return null;
+    }, []);
+
     return Material(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

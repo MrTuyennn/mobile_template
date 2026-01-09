@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: assets,l10n,theme,widget,storage,app_logger,home,account,auth,main,notification
+# melos_managed_dependency_overrides: assets,l10n,theme,widget,storage,app_logger,home,account,auth,main,notification,core
 dependency_overrides:
   account:
     path: ../packages/account
@@ -8,6 +8,8 @@ dependency_overrides:
     path: ../shared/assets
   auth:
     path: ../packages/auth
+  core:
+    path: ../shared/core
   home:
     path: ../packages/home
   l10n:

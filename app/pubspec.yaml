@@ -37,7 +37,12 @@ dependencies:
     path: ../packages/account
   notification:
     path: ../packages/notification
+  core:
+    path: ../shared/core
   auto_route: ^11.1.0
+  hooks_riverpod: ^3.1.0
+  flutter_hooks:
+  riverpod_annotation: ^4.0.0
 
 dev_dependencies:
   flutter_test:

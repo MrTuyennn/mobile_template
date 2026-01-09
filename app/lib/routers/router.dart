@@ -1,4 +1,5 @@
 import 'package:account/module/account_route_module.gr.dart';
+import 'package:app/routers/guard.dart';
 import 'package:auth/modules/auth_route_module.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:home/module/home_route_module.dart';
@@ -8,7 +9,9 @@ import 'package:notification/modules/notification_route_module.gr.dart';
 
 @AutoRouterConfig(generateForDir: ['lib/modules', 'lib/app/presentation/pages'])
 class AppRouter extends RootStackRouter {
-  AppRouter();
+  AppRouter({required this.authRouteGuard});
+  final AuthRouteGuard authRouteGuard;
+
   @override
   RouteType get defaultRouteType => const RouteType.adaptive();
   @override
@@ -22,6 +25,7 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: NotificationRoute.page, path: 'notification'),
         AutoRoute(page: AccountRoute.page, path: 'account'),
       ],
+      guards: [authRouteGuard],
     ),
     ...HomeRouteModule().routes,
     ...AuthRouteModule().routes,
