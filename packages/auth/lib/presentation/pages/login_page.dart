@@ -14,7 +14,10 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Material(
       child: Center(
-        child: Container(height: 100, width: 100, color: Colors.amber),
+        child: GestureDetector(
+          onTap: () {},
+          child: Container(height: 100, width: 100, color: Colors.amber),
+        ),
       ),
     );
   }

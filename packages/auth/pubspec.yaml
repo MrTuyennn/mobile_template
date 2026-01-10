@@ -12,6 +12,12 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: ^11.1.0
+  theme:
+    path: ../../shared/theme
+  l10n:
+    path: ../../shared/l10n
+  app_logger:
+    path: ../../shared/logger
 
 dev_dependencies:
   flutter_test:

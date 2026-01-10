@@ -12,7 +12,7 @@ class BaseAppState {
 
 @Riverpod(keepAlive: true)
 class AppStateNotifier extends _$AppStateNotifier {
-  void setAuthenticated(bool isAuth) {
+  Future<void> setAuthenticated(bool isAuth) async {
     state = state.copyWith(isAuthencation: isAuth);
   }
 
