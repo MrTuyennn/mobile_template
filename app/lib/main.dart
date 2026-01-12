@@ -16,7 +16,7 @@ void main() {
 
             WidgetsBinding.instance.addPostFrameCallback((_) async {
               await Future.wait([
-                ref.read(appStateProvider.notifier).setAuthenticated(false),
+                ref.read(appStateProvider.notifier).setAuthenticated(true),
               ]);
               completer.complete();
             });
