@@ -1,0 +1,6 @@
+# melos_managed_dependency_overrides: app_logger,core
+dependency_overrides:
+  app_logger:
+    path: ../logger
+  core:
+    path: ../core
