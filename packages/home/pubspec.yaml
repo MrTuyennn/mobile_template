@@ -12,6 +12,10 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: ^11.1.0
+  core:
+    path: ../../shared/core
+  provider:
+    path: ../../shared/provider
 
 dev_dependencies:
   flutter_test:

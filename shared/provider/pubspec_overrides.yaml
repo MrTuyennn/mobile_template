@@ -1,6 +1,8 @@
-# melos_managed_dependency_overrides: app_logger,core
+# melos_managed_dependency_overrides: app_logger,core,storage
 dependency_overrides:
   app_logger:
     path: ../logger
   core:
     path: ../core
+  storage:
+    path: ../storage

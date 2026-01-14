@@ -1,0 +1,10 @@
+# melos_managed_dependency_overrides: app_logger,core,provider,storage
+dependency_overrides:
+  app_logger:
+    path: ../../shared/logger
+  core:
+    path: ../../shared/core
+  provider:
+    path: ../../shared/provider
+  storage:
+    path: ../../shared/storage

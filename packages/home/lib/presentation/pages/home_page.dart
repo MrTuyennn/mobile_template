@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             GestureDetector(
-              onTap: () {
+              onTap: () async {
                 setState(() {
                   lsItem.add(1);
                 });
