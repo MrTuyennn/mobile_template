@@ -1,15 +1,14 @@
-import 'package:core/src/remote/token/dtos/refresh_token_response.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod/riverpod.dart';
 import 'package:storage/storage.dart';
+import './itoken_service.dart';
+import './dtos/refresh_token_response.dart';
 
-import 'itoken_service.dart';
-
-final tokenServiceProvider = Provider.family<ItokenService, Dio>((ref, dio) {
+final tokenServiceProvider = Provider.family<ITokenService, Dio>((ref, dio) {
   return TokenService(dio);
 });
 
-class TokenService implements ItokenService {
+class TokenService implements ITokenService {
   TokenService(this._dio);
   final Dio _dio;
 

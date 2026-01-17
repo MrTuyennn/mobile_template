@@ -1,10 +1,10 @@
-import 'dtos/refresh_token_response.dart';
+import './dtos/refresh_token_response.dart';
 
 const accessTokenSecretKey = 'accessTokenSecretKey@RestClient';
 const accessProfileTokenSecretKey = 'accessProfileTokenSecretKey@RestClient';
 const refreshAccessTokenSecretKey = 'refreshAccessTokenSecretKey@RestClient';
 
-abstract interface class ItokenService {
+abstract interface class ITokenService {
   Future<String?> getAccessToken();
 
   Future<String?> getRefreshToken();

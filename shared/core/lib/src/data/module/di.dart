@@ -1,6 +1,6 @@
 import 'package:core/core.dart';
-import 'package:core/src/remote/rest_interceptors_client.dart';
 import 'package:riverpod/riverpod.dart';
+import '../remote/rest_interceptors_client.dart';
 
 final restClientProvider = Provider<RestClientProvider>((ref) {
   return ({options}) {

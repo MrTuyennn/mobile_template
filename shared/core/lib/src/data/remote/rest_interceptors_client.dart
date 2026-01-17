@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:app_logger/logger.dart';
-import 'package:core/src/remote/token/itoken_service.dart';
-import 'package:core/src/remote/token/token_service.dart';
 import 'package:dio/dio.dart';
 import 'package:riverpod/riverpod.dart';
+
+import 'token/token_service.dart';
+import 'token/itoken_service.dart';
 
 final restInterceptorsClient = Provider.family<RestInterceptorsClient, Dio>((
   ref,
@@ -18,7 +19,7 @@ final class RestInterceptorsClient extends Interceptor {
   RestInterceptorsClient(this._dio, this._tokenService);
 
   final Dio _dio;
-  final ItokenService _tokenService;
+  final ITokenService _tokenService;
 
   @override
   void onRequest(
