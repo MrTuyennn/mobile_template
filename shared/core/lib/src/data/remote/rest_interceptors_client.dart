@@ -26,7 +26,9 @@ final class RestInterceptorsClient extends Interceptor {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    logger.i('REQUEST[${options.method}] => PATH: ${options.path}');
+    logger.i(
+      'REQUEST[${options.method}] => PATH: ${options.baseUrl}/${options.path}',
+    );
     final accessToken = await _tokenService.getAccessToken();
     options.headers['Content-Type'] = 'application/json';
     options.headers['Accept'] = 'application/json';
@@ -43,14 +45,15 @@ final class RestInterceptorsClient extends Interceptor {
     ResponseInterceptorHandler handler,
   ) {
     logger.d(
-      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.path}',
+      'RESPONSE[${response.statusCode}] => PATH: ${response.requestOptions.baseUrl}/${response.requestOptions.path}',
     );
+    super.onResponse(response, handler);
   }
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     logger.e(
-      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.path}',
+      'ERROR[${err.response?.statusCode}] => PATH: ${err.requestOptions.baseUrl}/${err.requestOptions.path}',
     );
     if (err.response?.statusCode == HttpStatus.unauthorized) {
       final token = await _tokenService.getRefreshToken();

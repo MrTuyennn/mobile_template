@@ -1,73 +1,40 @@
+import 'package:app_logger/logger.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:core/core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:home/domain/entities/entities.dart';
+import 'package:home/presentation/pages/home_page_viewmodel.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
-class HomePage extends StatefulWidget {
+class HomePage extends HookConsumerWidget {
   const HomePage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    final loadingHomeState = useLoadingState();
+    final homeViewModel = ref.read(homePageViewmodelProvider.notifier);
 
-class _HomePageState extends State<HomePage> {
-  List<int> lsItem = [];
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.blueAccent,
-      child: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: CustomScrollView(
-                slivers: [
-                  SliverList.builder(
-                    itemCount: lsItem.length,
-                    itemBuilder: (_, index) {
-                      return ColoredBox(
-                        color: Colors.amberAccent,
-                        child: Row(
-                          children: [
-                            Text(lsItem[index].toString()),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  lsItem.removeAt(index);
-                                });
-                              },
-                              icon: Icon(Icons.close),
-                            ),
-                            IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  lsItem[index] = 2;
-                                });
-                              },
-                              icon: Icon(Icons.edit),
-                            ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            GestureDetector(
-              onTap: () async {
-                setState(() {
-                  lsItem.add(1);
-                });
-              },
-              child: Container(
-                color: Colors.cyan,
-                height: 100,
-                width: double.infinity,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+    Future<Result<IHomeCategoryEntities>>? homeCategory() async {
+      return loadingHomeState.whileLoading(() {
+        return homeViewModel.getHomeCategory().then((result) {
+          if (!context.mounted) return result;
+          result.ifFailure((e) {
+            logger.e('====> ${e.message}');
+          });
+          return result;
+        });
+      });
+    }
+
+    useEffect(() {
+      Future.delayed(Duration(seconds: 2), () {
+        homeCategory();
+      });
+      return null;
+    }, []);
+
+    return Scaffold(body: Center(child: Text('Get category')));
   }
 }

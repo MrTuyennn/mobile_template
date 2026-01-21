@@ -17,7 +17,7 @@ final class RestClient extends IRestClient {
 
   @override
   IRestClientOptions get defaultOptions => IRestClientOptions(
-    baseUrl: 'http',
+    baseUrl: 'https://dogapi.dog/api/v2',
     connectTimeout: const Duration(seconds: 30),
     sendTimeout: const Duration(seconds: 30),
     receiveTimeout: const Duration(seconds: 30),

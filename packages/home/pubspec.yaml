@@ -16,12 +16,22 @@ dependencies:
     path: ../../shared/core
   provider:
     path: ../../shared/provider
+  app_logger:
+    path: ../../shared/logger
+  freezed_annotation: ^3.1.0
+  riverpod_annotation: ^4.0.0
+  json_annotation: ^4.9.0
+  riverpod: ^3.1.0
+  hooks_riverpod: ^3.1.0
+  flutter_hooks: ^0.21.3+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0
-  auto_route_generator: ^10.4.0
-  build_runner: ^2.10.4
+  build_runner: ^2.10.5
+  riverpod_generator: ^4.0.0+1
+  freezed: ^3.2.3
+  json_serializable: ^6.11.2
 
 flutter:
