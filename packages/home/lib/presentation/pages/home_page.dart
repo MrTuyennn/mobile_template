@@ -14,7 +14,7 @@ class HomePage extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loadingHomeState = useLoadingState();
-    final homeViewModel = ref.read(homePageViewmodelProvider.notifier);
+    final homeViewModel = ref.watch(homePageViewmodelProvider.notifier);
 
     Future<Result<IHomeCategoryEntities>>? homeCategory() async {
       return loadingHomeState.whileLoading(() {
@@ -29,9 +29,7 @@ class HomePage extends HookConsumerWidget {
     }
 
     useEffect(() {
-      Future.delayed(Duration(seconds: 2), () {
-        homeCategory();
-      });
+      homeCategory();
       return null;
     }, []);
 
