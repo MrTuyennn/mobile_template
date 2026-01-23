@@ -1,4 +1,3 @@
-import 'package:app_logger/logger.dart';
 import 'package:core/core.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:home/domain/entities/entities.dart';
@@ -23,11 +22,7 @@ class HomePageViewmodel extends _$HomePageViewmodel {
   Future<Result<IHomeCategoryEntities>> getHomeCategory() {
     final usecase = GetHomeCategoryUsecase(homeCategoryRepo: _categoryRepo);
     return usecase().then((result) {
-      if (result.isFailure) {
-        logger.e('error --->');
-      } else {
-        state = state.copyWith(homeCategory: result);
-      }
+      state = state.copyWith(homeCategory: result);
       return result;
     });
   }
