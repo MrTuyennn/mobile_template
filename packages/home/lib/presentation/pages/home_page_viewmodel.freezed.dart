@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomePageState {
 
- Result<IHomeCategoryEntities>? get homeCategory;
+ Result<Iterable<IDogEntities>>? get homeCategory;
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -45,11 +45,11 @@ abstract mixin class $HomePageStateCopyWith<$Res>  {
   factory $HomePageStateCopyWith(HomePageState value, $Res Function(HomePageState) _then) = _$HomePageStateCopyWithImpl;
 @useResult
 $Res call({
- Result<IHomeCategoryEntities>? homeCategory
+ Result<Iterable<IDogEntities>>? homeCategory
 });
 
 
-$ResultCopyWith<IHomeCategoryEntities, $Res>? get homeCategory;
+$ResultCopyWith<Iterable<IDogEntities>, $Res>? get homeCategory;
 
 }
 /// @nodoc
@@ -65,19 +65,19 @@ class _$HomePageStateCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? homeCategory = freezed,}) {
   return _then(_self.copyWith(
 homeCategory: freezed == homeCategory ? _self.homeCategory : homeCategory // ignore: cast_nullable_to_non_nullable
-as Result<IHomeCategoryEntities>?,
+as Result<Iterable<IDogEntities>>?,
   ));
 }
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ResultCopyWith<IHomeCategoryEntities, $Res>? get homeCategory {
+$ResultCopyWith<Iterable<IDogEntities>, $Res>? get homeCategory {
     if (_self.homeCategory == null) {
     return null;
   }
 
-  return $ResultCopyWith<IHomeCategoryEntities, $Res>(_self.homeCategory!, (value) {
+  return $ResultCopyWith<Iterable<IDogEntities>, $Res>(_self.homeCategory!, (value) {
     return _then(_self.copyWith(homeCategory: value));
   });
 }
@@ -162,7 +162,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Result<IHomeCategoryEntities>? homeCategory)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Result<Iterable<IDogEntities>>? homeCategory)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomePageState() when $default != null:
 return $default(_that.homeCategory);case _:
@@ -183,7 +183,7 @@ return $default(_that.homeCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Result<IHomeCategoryEntities>? homeCategory)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Result<Iterable<IDogEntities>>? homeCategory)  $default,) {final _that = this;
 switch (_that) {
 case _HomePageState():
 return $default(_that.homeCategory);case _:
@@ -203,7 +203,7 @@ return $default(_that.homeCategory);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Result<IHomeCategoryEntities>? homeCategory)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Result<Iterable<IDogEntities>>? homeCategory)?  $default,) {final _that = this;
 switch (_that) {
 case _HomePageState() when $default != null:
 return $default(_that.homeCategory);case _:
@@ -221,7 +221,7 @@ class _HomePageState implements HomePageState {
   const _HomePageState({this.homeCategory});
   
 
-@override final  Result<IHomeCategoryEntities>? homeCategory;
+@override final  Result<Iterable<IDogEntities>>? homeCategory;
 
 /// Create a copy of HomePageState
 /// with the given fields replaced by the non-null parameter values.
@@ -253,11 +253,11 @@ abstract mixin class _$HomePageStateCopyWith<$Res> implements $HomePageStateCopy
   factory _$HomePageStateCopyWith(_HomePageState value, $Res Function(_HomePageState) _then) = __$HomePageStateCopyWithImpl;
 @override @useResult
 $Res call({
- Result<IHomeCategoryEntities>? homeCategory
+ Result<Iterable<IDogEntities>>? homeCategory
 });
 
 
-@override $ResultCopyWith<IHomeCategoryEntities, $Res>? get homeCategory;
+@override $ResultCopyWith<Iterable<IDogEntities>, $Res>? get homeCategory;
 
 }
 /// @nodoc
@@ -273,7 +273,7 @@ class __$HomePageStateCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? homeCategory = freezed,}) {
   return _then(_HomePageState(
 homeCategory: freezed == homeCategory ? _self.homeCategory : homeCategory // ignore: cast_nullable_to_non_nullable
-as Result<IHomeCategoryEntities>?,
+as Result<Iterable<IDogEntities>>?,
   ));
 }
 
@@ -281,12 +281,12 @@ as Result<IHomeCategoryEntities>?,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$ResultCopyWith<IHomeCategoryEntities, $Res>? get homeCategory {
+$ResultCopyWith<Iterable<IDogEntities>, $Res>? get homeCategory {
     if (_self.homeCategory == null) {
     return null;
   }
 
-  return $ResultCopyWith<IHomeCategoryEntities, $Res>(_self.homeCategory!, (value) {
+  return $ResultCopyWith<Iterable<IDogEntities>, $Res>(_self.homeCategory!, (value) {
     return _then(_self.copyWith(homeCategory: value));
   });
 }

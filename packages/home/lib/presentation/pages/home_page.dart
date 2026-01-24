@@ -16,7 +16,7 @@ class HomePage extends HookConsumerWidget {
     final loadingHomeState = useLoadingState();
     final homeViewModel = ref.watch(homePageViewmodelProvider.notifier);
 
-    Future<Result<IHomeCategoryEntities>>? homeCategory() async {
+    Future<Result<Iterable<IDogEntities>>>? homeCategory() async {
       return loadingHomeState.whileLoading(() {
         return homeViewModel.getHomeCategory().then((result) {
           if (!context.mounted) return result;

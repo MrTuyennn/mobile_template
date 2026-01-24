@@ -1,5 +1,5 @@
-import 'package:app_logger/logger.dart';
 import 'package:core/core.dart';
+import 'package:home/data/responses/response.dart';
 import 'package:home/domain/entities/entities.dart';
 import 'package:home/domain/repository/home_category_repo.dart';
 
@@ -11,10 +11,9 @@ class HomeCategoryRepoImpl implements HomeCategoryRepo {
   final RestClientProvider restClientProvider;
 
   @override
-  Future<IHomeCategoryEntities> getHomeCategory() async {
+  Future<Iterable<IDogEntities>> getHomeCategory() async {
     final client = restClientProvider();
     final reponse = await client.get(EndPoint.breed);
-    logger.d(reponse);
-    return HomeCategoryEntities();
+    return DogResponse.fromJson(reponse.data).data;
   }
 }

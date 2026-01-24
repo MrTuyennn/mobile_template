@@ -11,7 +11,7 @@ part 'home_page_viewmodel.g.dart';
 
 @freezed
 abstract class HomePageState with _$HomePageState {
-  const factory HomePageState({Result<IHomeCategoryEntities>? homeCategory}) =
+  const factory HomePageState({Result<Iterable<IDogEntities>>? homeCategory}) =
       _HomePageState;
 }
 
@@ -19,7 +19,7 @@ abstract class HomePageState with _$HomePageState {
 class HomePageViewmodel extends _$HomePageViewmodel {
   late final HomeCategoryRepo _categoryRepo;
 
-  Future<Result<IHomeCategoryEntities>> getHomeCategory() {
+  Future<Result<Iterable<IDogEntities>>> getHomeCategory() {
     final usecase = GetHomeCategoryUsecase(homeCategoryRepo: _categoryRepo);
     return usecase().then((result) {
       state = state.copyWith(homeCategory: result);

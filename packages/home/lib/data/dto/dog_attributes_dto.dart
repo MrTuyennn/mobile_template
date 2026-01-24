@@ -4,6 +4,19 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'dog_attributes_dto.g.dart';
 
+extension DogAttributesDtoX on DogAttributesDto {
+  IDogAttributes toEntity() {
+    return DogAttributes(
+      name: name,
+      description: description,
+      dogLife: life,
+      dogFemaleWeight: femaleWeight,
+      dogMaleWeight: maleWeight,
+      hypoallergenic: hypoallergenic,
+    );
+  }
+}
+
 @JsonSerializable(fieldRename: FieldRename.snake)
 @DogFemaleWeightConverter()
 @DogMaleWeightConverter()
