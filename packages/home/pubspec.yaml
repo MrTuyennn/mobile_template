@@ -18,6 +18,8 @@ dependencies:
     path: ../../shared/provider
   app_logger:
     path: ../../shared/logger
+  theme:
+    path: ../../shared/theme
   freezed_annotation: ^3.1.0
   riverpod_annotation: ^4.0.0
   json_annotation: ^4.9.0

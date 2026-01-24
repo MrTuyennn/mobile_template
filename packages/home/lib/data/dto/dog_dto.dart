@@ -6,7 +6,7 @@ part 'dog_dto.g.dart';
 
 extension DogDtoX on DogDto {
   IDogEntities toEntity() {
-    return DogEntities(id: id, type: type, dogAttributes: dogAttributes);
+    return DogEntities(id: id, type: type, dogAttributes: attributes);
   }
 }
 
@@ -16,14 +16,14 @@ final class DogDto {
   const DogDto({
     this.id = '',
     this.type = '',
-    this.dogAttributes = const DogAttributes(),
+    this.attributes = const DogAttributes(),
   });
 
   factory DogDto.fromJson(Map<String, dynamic> json) => _$DogDtoFromJson(json);
 
   final String id;
   final String type;
-  final IDogAttributes dogAttributes;
+  final IDogAttributes attributes;
 
   Map<String, dynamic> toJson() => _$DogDtoToJson(this);
 }

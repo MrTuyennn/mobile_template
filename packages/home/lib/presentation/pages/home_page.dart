@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:home/domain/entities/entities.dart';
 import 'package:home/presentation/pages/home_page_viewmodel.dart';
+import 'package:home/presentation/widgets/dog_card.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 @RoutePage()
@@ -61,7 +62,8 @@ class HomePage extends HookConsumerWidget {
               return SliverList.builder(
                 itemCount: homeCategory.length,
                 itemBuilder: (_, index) {
-                  return Text(index.toString());
+                  final dog = homeCategory.elementAt(index);
+                  return DogCard(dog: dog);
                 },
               );
             },

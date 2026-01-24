@@ -9,17 +9,15 @@ part of 'dog_dto.dart';
 DogDto _$DogDtoFromJson(Map<String, dynamic> json) => DogDto(
   id: json['id'] as String? ?? '',
   type: json['type'] as String? ?? '',
-  dogAttributes: json['dog_attributes'] == null
+  attributes: json['attributes'] == null
       ? const DogAttributes()
       : const DogAttributesConverter().fromJson(
-          json['dog_attributes'] as Map<String, dynamic>,
+          json['attributes'] as Map<String, dynamic>,
         ),
 );
 
 Map<String, dynamic> _$DogDtoToJson(DogDto instance) => <String, dynamic>{
   'id': instance.id,
   'type': instance.type,
-  'dog_attributes': const DogAttributesConverter().toJson(
-    instance.dogAttributes,
-  ),
+  'attributes': const DogAttributesConverter().toJson(instance.attributes),
 };

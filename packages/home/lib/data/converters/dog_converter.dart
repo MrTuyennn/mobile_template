@@ -15,7 +15,7 @@ final class DogConverter
     return DogDto(
       id: object.id,
       type: object.type,
-      dogAttributes: object.dogAttributes,
+      attributes: object.dogAttributes,
     ).toJson();
   }
 }
