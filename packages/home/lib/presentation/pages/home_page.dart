@@ -33,6 +33,41 @@ class HomePage extends HookConsumerWidget {
       return null;
     }, []);
 
-    return Scaffold(body: Center(child: Text('Get category')));
+    return SafeArea(
+      child: CustomScrollView(
+        slivers: [
+          HookConsumer(
+            builder: (_, ref, _) {
+              final isLoading = loadingHomeState.watchIsLoading;
+              final homeCategoryResult = ref.watch(
+                homePageViewmodelProvider.select((value) => value.homeCategory),
+              );
+
+              final homeCategory = homeCategoryResult?.when(
+                success: (data) => data,
+                failure: (_) => null,
+              );
+
+              if (isLoading && homeCategoryResult == null) {
+                return SliverFillRemaining(child: Center(child: Text('First')));
+              }
+
+              if (homeCategory == null || homeCategory.isEmpty) {
+                return SliverFillRemaining(
+                  child: Center(child: Text('Seconds')),
+                );
+              }
+
+              return SliverList.builder(
+                itemCount: homeCategory.length,
+                itemBuilder: (_, index) {
+                  return Text(index.toString());
+                },
+              );
+            },
+          ),
+        ],
+      ),
+    );
   }
 }
