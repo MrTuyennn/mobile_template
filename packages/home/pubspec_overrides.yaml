@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: app_logger,core,provider,storage,assets,theme
+# melos_managed_dependency_overrides: app_logger,core,provider,storage,assets,theme,routes
 dependency_overrides:
   app_logger:
     path: ../../shared/logger
@@ -8,6 +8,8 @@ dependency_overrides:
     path: ../../shared/core
   provider:
     path: ../../shared/provider
+  routes:
+    path: ../../shared/routes
   storage:
     path: ../../shared/storage
   theme:

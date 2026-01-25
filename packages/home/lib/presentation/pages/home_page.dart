@@ -63,7 +63,12 @@ class HomePage extends HookConsumerWidget {
                 itemCount: homeCategory.length,
                 itemBuilder: (_, index) {
                   final dog = homeCategory.elementAt(index);
-                  return DogCard(dog: dog);
+                  return DogCard(
+                    dog: dog,
+                    onClick: () {
+                      AutoRouter.of(context).pushPath('/dog_detail/${dog.id}');
+                    },
+                  );
                 },
               );
             },

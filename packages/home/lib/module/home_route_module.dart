@@ -5,7 +5,17 @@ import 'package:home/module/home_route_module.gr.dart';
 class HomeRouteModule extends RootStackRouter {
   HomeRouteModule();
   @override
-  List<AutoRoute> get routes => [
-    AutoRoute(page: HomeRoute.page, path: '/home'),
-  ];
+  List<AutoRoute> get routes =>
+      [
+            AutoRoute(page: HomeRoute.page, path: '/home'),
+            AutoRoute(page: DogDetailRoute.page, path: '/dog_detail/:id'),
+          ]
+          .map(
+            (e) => e.copyWith(
+              guards: [
+                ...{...e.guards, ...guards},
+              ],
+            ),
+          )
+          .toList();
 }
