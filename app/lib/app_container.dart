@@ -1,4 +1,5 @@
 import 'package:app/routers/auth_route_guard.dart';
+import 'package:app/routers/base/navigator_observer.dart';
 import 'package:app/routers/router.dart';
 import 'package:core/core.dart';
 import 'package:flutter/material.dart';
@@ -35,8 +36,11 @@ class AppContainer extends HookConsumerWidget {
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       themeMode: ThemeMode.light,
-      routeInformationParser: router.defaultRouteParser(),
-      routerDelegate: router.delegate(),
+      // routeInformationParser: router.defaultRouteParser(),
+      // routerDelegate: router.delegate(),
+      routerConfig: router.config(
+        navigatorObservers: () => [NavigatorObserverApp()],
+      ),
     );
   }
 }
