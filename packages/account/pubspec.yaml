@@ -14,6 +14,8 @@ dependencies:
   auto_route: ^11.1.0
   app_logger:
     path: ../../shared/logger
+  widget:
+    path: ../../shared/widget
   device_info_app: ^1.0.4
 
 dev_dependencies:
