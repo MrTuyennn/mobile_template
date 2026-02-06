@@ -244,6 +244,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.3"
+  device_info_app:
+    dependency: transitive
+    description:
+      name: device_info_app
+      sha256: "634b40a5e7647cb3d9b7a4178356ce9c2fd893c9d9fd4ffab0e686ada9e215de"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.4"
   dio:
     dependency: transitive
     description:
