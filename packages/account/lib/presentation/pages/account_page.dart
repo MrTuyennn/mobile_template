@@ -3,6 +3,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_info_app/device_info_app.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/theme.dart';
+import 'package:widget/widget.dart';
 
 @RoutePage()
 class AccountPage extends StatefulWidget {
@@ -29,10 +30,10 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     final theme = context.theme;
     final appColors = theme.appColors;
-    return Scaffold(
-      backgroundColor: appColors.black,
-      body: Center(
-        child: Text('Account Page', style: theme.textTheme.headlineMedium),
+    return SafeScreen(
+      child: Text(
+        'screen',
+        style: theme.textTheme.headlineMedium?.copyWith(color: appColors.white),
       ),
     );
   }
