@@ -22,4 +22,7 @@ class L10nVi extends L10n {
 
   @override
   String get search => 'Tìm kiếm';
+
+  @override
+  String get account => 'Thông tin tài khoản';
 }

@@ -3,7 +3,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:device_info_app/device_info_app.dart';
 import 'package:flutter/material.dart';
 import 'package:theme/theme.dart';
-import 'package:widget/widget.dart';
+
+import '../widgets/header/account_header.dart';
 
 @RoutePage()
 class AccountPage extends StatefulWidget {
@@ -21,7 +22,6 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _getAppInfo();
   }
@@ -30,11 +30,11 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     final theme = context.theme;
     final appColors = theme.appColors;
-    return SafeScreen(
-      child: Text(
-        'screen',
-        style: theme.textTheme.headlineMedium?.copyWith(color: appColors.white),
-      ),
+    return Column(
+      children: [
+        AccountHeader(),
+        Expanded(child: Container(color: appColors.white)),
+      ],
     );
   }
 }

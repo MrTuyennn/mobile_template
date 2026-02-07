@@ -126,6 +126,12 @@ abstract class L10n {
   /// In vi, this message translates to:
   /// **'Tìm kiếm'**
   String get search;
+
+  /// No description provided for @account.
+  ///
+  /// In vi, this message translates to:
+  /// **'Thông tin tài khoản'**
+  String get account;
 }
 
 class _L10nDelegate extends LocalizationsDelegate<L10n> {

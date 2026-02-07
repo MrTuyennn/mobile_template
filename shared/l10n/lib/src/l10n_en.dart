@@ -22,4 +22,7 @@ class L10nEn extends L10n {
 
   @override
   String get search => 'Search';
+
+  @override
+  String get account => 'Account Information';
 }

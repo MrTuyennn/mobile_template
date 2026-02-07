@@ -4,5 +4,6 @@
   "update": "update",
   "delete": "Delete",
   "add": "Add",
-  "search": "Search"
+  "search": "Search",
+  "account": "Account Information"
 }

@@ -18,6 +18,8 @@ dependencies:
     path: ../../shared/widget
   theme:
     path: ../../shared/theme
+  l10n:
+    path: ../../shared/l10n
   device_info_app: ^1.0.4
 
 dev_dependencies:

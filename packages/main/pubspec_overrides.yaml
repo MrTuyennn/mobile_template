@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: home,notification,account,app_logger,assets,theme,widget,core,provider,storage,routes
+# melos_managed_dependency_overrides: home,notification,account,app_logger,assets,theme,widget,core,provider,storage,routes,l10n
 dependency_overrides:
   account:
     path: ../account
@@ -10,6 +10,8 @@ dependency_overrides:
     path: ../../shared/core
   home:
     path: ../home
+  l10n:
+    path: ../../shared/l10n
   notification:
     path: ../notification
   provider:
