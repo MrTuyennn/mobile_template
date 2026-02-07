@@ -1,6 +1,7 @@
 import 'package:account/module/account_route_module.gr.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:home/module/home_route_module.gr.dart';
 import 'package:notification/modules/notification_route_module.gr.dart';
 
@@ -44,13 +45,18 @@ class _MainPageState extends State<MainPage> {
           ),
         ];
 
-        return Scaffold(
-          body: child,
-          bottomNavigationBar: NavigationBarCustom(
-            navBars: navBars,
-            onChange: (i) {
-              tabsRouter.setActiveIndex(i);
-            },
+        return AnnotatedRegion<SystemUiOverlayStyle>(
+          value: SystemUiOverlayStyle.light.copyWith(
+            statusBarColor: Colors.transparent,
+          ),
+          child: Scaffold(
+            body: child,
+            bottomNavigationBar: NavigationBarCustom(
+              navBars: navBars,
+              onChange: (i) {
+                tabsRouter.setActiveIndex(i);
+              },
+            ),
           ),
         );
       },

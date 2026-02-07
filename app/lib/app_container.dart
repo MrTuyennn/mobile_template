@@ -36,8 +36,6 @@ class AppContainer extends HookConsumerWidget {
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       themeMode: ThemeMode.light,
-      // routeInformationParser: router.defaultRouteParser(),
-      // routerDelegate: router.delegate(),
       routerConfig: router.config(
         navigatorObservers: () => [NavigatorObserverApp()],
       ),

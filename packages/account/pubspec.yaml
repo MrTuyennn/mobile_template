@@ -16,6 +16,8 @@ dependencies:
     path: ../../shared/logger
   widget:
     path: ../../shared/widget
+  theme:
+    path: ../../shared/theme
   device_info_app: ^1.0.4
 
 dev_dependencies:

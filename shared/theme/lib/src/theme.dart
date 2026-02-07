@@ -1,5 +1,6 @@
 import 'package:assets/assets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:theme/src/text_theme.dart';
 
 import 'colors.dart';
@@ -14,9 +15,15 @@ class AppTheme {
         : AppTextTheme.light();
     final themeData = ThemeData(
       extensions: [appColors, appTextTheme],
-      colorScheme: ColorScheme.fromSeed(seedColor: appColors.blue),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: appColors.blue,
+        brightness: Brightness.light,
+      ),
       fontFamily: FontFamily.quicksand,
       useMaterial3: true,
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+      ),
       inputDecorationTheme: InputDecorationTheme(
         prefixIconColor: appColors.textDisabled,
       ),
@@ -44,6 +51,9 @@ class AppTheme {
       ),
       fontFamily: FontFamily.quicksand,
       useMaterial3: true,
+      appBarTheme: const AppBarTheme(
+        systemOverlayStyle: SystemUiOverlayStyle.light,
+      ),
       bottomSheetTheme: const BottomSheetThemeData(
         elevation: 0,
         backgroundColor: Colors.transparent,
