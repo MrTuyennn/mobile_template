@@ -1,3 +1,4 @@
+import 'package:account/presentation/widgets/setting_card.dart';
 import 'package:account/presentation/widgets/setting_item.dart';
 import 'package:app_logger/logger.dart';
 import 'package:auto_route/auto_route.dart';
@@ -37,7 +38,33 @@ class _AccountPageState extends State<AccountPage> {
             padding: EdgeInsets.all(AppDimens.slg),
             child: Column(
               spacing: AppDimens.md,
-              children: [SettingItem(), SettingItem()],
+              children: [
+                SettingCard(child: SettingItem()),
+                SettingCard(
+                  child: Column(
+                    spacing: AppDimens.lg,
+                    children: [
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                    ],
+                  ),
+                ),
+                SettingCard(
+                  child: Column(
+                    spacing: AppDimens.lg,
+                    children: [
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                      SettingItem(),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
