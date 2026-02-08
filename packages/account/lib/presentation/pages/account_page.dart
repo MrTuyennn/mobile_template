@@ -1,3 +1,4 @@
+import 'package:account/presentation/widgets/setting_item.dart';
 import 'package:app_logger/logger.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:device_info_app/device_info_app.dart';
@@ -28,12 +29,18 @@ class _AccountPageState extends State<AccountPage> {
 
   @override
   Widget build(BuildContext context) {
-    final theme = context.theme;
-    final appColors = theme.appColors;
     return Column(
       children: [
         AccountHeader(),
-        Expanded(child: Container(color: appColors.white)),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(AppDimens.slg),
+            child: Column(
+              spacing: AppDimens.md,
+              children: [SettingItem(), SettingItem()],
+            ),
+          ),
+        ),
       ],
     );
   }
