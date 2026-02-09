@@ -36,6 +36,7 @@ class HomePage extends HookConsumerWidget {
 
     return SafeArea(
       child: CustomScrollView(
+        controller: homeViewModel.scrollController,
         slivers: [
           HookConsumer(
             builder: (_, ref, _) {
