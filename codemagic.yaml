@@ -1,0 +1,208 @@
+workflows:
+  android-release:
+    name: Android Release Build
+    max_build_duration: 120
+    environment:
+      android_signing:
+        - keystore_reference
+      vars:
+        PACKAGE_NAME: "com.example.app"
+        GOOGLE_PLAY_TRACK: internal
+    triggering:
+      events:
+        - push
+        - tag
+      branch:
+        patterns:
+          - pattern: release/*
+          - pattern: main
+            include: true
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/fvm/versions/stable" > android/local.properties
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Build release APK
+        script: |
+          flutter build apk --release \
+            --split-per-abi \
+            --no-tree-shake-icons
+      - name: Build release App Bundle
+        script: |
+          flutter build appbundle --release
+    artifacts:
+      - build/app/outputs/flutter-apk/**/*.apk
+      - build/app/outputs/bundle/**/*.aab
+    publishing:
+      google_play:
+        credentials: $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
+        track: $GOOGLE_PLAY_TRACK
+        submit_as_draft: true
+
+  ios-release:
+    name: iOS Release Build
+    max_build_duration: 120
+    environment:
+      ios_signing:
+        - certificate_reference
+        - provision_profile_reference
+      vars:
+        APP_ID: "com.example.app"
+        BUNDLE_ID: "com.example.app"
+    triggering:
+      events:
+        - push
+        - tag
+      branch:
+        patterns:
+          - pattern: release/*
+          - pattern: main
+            include: true
+    scripts:
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Set up code signing
+        script: |
+          cd ios
+          pod install
+          cd ..
+      - name: Build iOS release
+        script: |
+          flutter build ios --release --no-codesign
+      - name: Build IPA
+        script: |
+          cd ios
+          xcodebuild -workspace Runner.xcworkspace \
+            -scheme Runner \
+            -configuration Release \
+            -derivedDataPath build \
+            -archivePath build/Runner.xcarchive \
+            archive
+          xcodebuild -exportArchive \
+            -archivePath build/Runner.xcarchive \
+            -exportPath build/ios \
+            -exportOptionsPlist exportOptions.plist
+          cd ..
+    artifacts:
+      - ios/build/ios/*.ipa
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
+
+  web-release:
+    name: Web Release Build
+    max_build_duration: 60
+    environment:
+      vars:
+        WEB_BASE_URL: "https://app.example.com"
+    triggering:
+      events:
+        - push
+        - tag
+      branch:
+        patterns:
+          - pattern: release/*
+          - pattern: main
+            include: true
+    scripts:
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Build web
+        script: |
+          flutter build web --release --web-renderer html
+    artifacts:
+      - build/web/**
+    publishing:
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        project_id: $FIREBASE_PROJECT_ID
+        ios_app_id: $FIREBASE_IOS_APP_ID
+        android_app_id: $FIREBASE_ANDROID_APP_ID
+
+  analyze-and-test:
+    name: Analyze & Test
+    max_build_duration: 60
+    triggering:
+      events:
+        - pull_request
+        - push
+      branch:
+        patterns:
+          - pattern: "**"
+    scripts:
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Analyze code
+        script: |
+          melos analyze
+      - name: Run tests
+        script: |
+          melos test
+    artifacts:
+      - build/reports/**
+    publishing:
+      github_issues:
+        include_commit_logs: true
+
+  android-debug:
+    name: Android Debug Build
+    max_build_duration: 60
+    triggering:
+      events:
+        - pull_request
+      branch:
+        patterns:
+          - pattern: "develop"
+    scripts:
+      - name: Set up local.properties
+        script: |
+          echo "flutter.sdk=$HOME/fvm/versions/stable" > android/local.properties
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Build debug APK
+        script: |
+          flutter build apk --debug
+    artifacts:
+      - build/app/outputs/flutter-apk/**/*.apk
+
+  ios-debug:
+    name: iOS Debug Build
+    max_build_duration: 60
+    environment:
+      ios_signing:
+        - certificate_reference
+        - provision_profile_reference
+    triggering:
+      events:
+        - pull_request
+      branch:
+        patterns:
+          - pattern: "develop"
+    scripts:
+      - name: Get dependencies
+        script: |
+          melos bootstrap
+          melos get
+      - name: Set up code signing
+        script: |
+          cd ios
+          pod install
+          cd ..
+      - name: Build iOS debug
+        script: |
+          flutter build ios --debug --no-codesign
+    artifacts:
+      - build/ios/Debug-iphonesimulator/**/*.app
