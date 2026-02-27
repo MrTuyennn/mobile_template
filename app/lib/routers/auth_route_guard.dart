@@ -22,7 +22,13 @@ class AuthRouteGuard extends BaseRouteGuard {
       return;
     }
 
-    _closure ??= router.push(LoginRoute());
+    _closure ??= router.push(
+      LoginRoute(
+        onLogin: (email, password) {
+          return Future.value(true);
+        },
+      ),
+    );
 
     await _closure?.then((_) => _closure = null);
 
