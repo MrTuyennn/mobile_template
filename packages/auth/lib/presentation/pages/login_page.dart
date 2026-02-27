@@ -2,9 +2,13 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:l10n/l10n.dart';
 
+typedef LoginCallback = Future<bool> Function(String email, String password);
+
 @RoutePage()
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  const LoginPage({super.key, required this.onLogin});
+
+  final LoginCallback onLogin;
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -17,7 +21,9 @@ class _LoginPageState extends State<LoginPage> {
     return Material(
       child: Center(
         child: GestureDetector(
-          onTap: () {},
+          onTap: () async {
+            await widget.onLogin('nguyennngoctuyen188@gmail.com', '123456');
+          },
           child: Container(
             height: 100,
             width: 100,
