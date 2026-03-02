@@ -32,7 +32,7 @@ class AppContainer extends HookConsumerWidget {
     return MaterialApp.router(
       theme: AppTheme.light(isTablet: false).themeData,
       darkTheme: AppTheme.dark(isTablet: false).themeData,
-      locale: Locale('vi', 'VN'),
+      locale: Locale('en', 'US'),
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       themeMode: ThemeMode.light,

@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   auto_route: ^11.1.0
+  l10n:
+    path: ../../shared/l10n
 
 dev_dependencies:
   flutter_test:

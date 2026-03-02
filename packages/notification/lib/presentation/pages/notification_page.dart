@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:l10n/l10n.dart';
 
 @RoutePage()
 class NotificationPage extends StatefulWidget {
@@ -12,9 +13,10 @@ class NotificationPage extends StatefulWidget {
 class _NotificationPageState extends State<NotificationPage> {
   @override
   Widget build(BuildContext context) {
+    final l10n = L10n.of(context);
     return Material(
       color: Colors.green,
-      child: Center(child: Text('Notification')),
+      child: Center(child: Text(l10n?.account ?? '')),
     );
   }
 }
