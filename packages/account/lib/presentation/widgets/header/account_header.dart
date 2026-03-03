@@ -5,7 +5,9 @@ import 'package:theme/theme.dart';
 import '../paint/bottom_arc_clipper.dart';
 
 class AccountHeader extends StatelessWidget {
-  const AccountHeader({super.key});
+  const AccountHeader({super.key, this.onPressNotification});
+
+  final Function()? onPressNotification;
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +46,12 @@ class AccountHeader extends StatelessWidget {
                     color: appColors.white.withValues(alpha: 0.3),
                     borderRadius: BorderRadius.circular(AppDimens.xxl),
                   ),
-                  child: Icon(
-                    Icons.notifications_active,
-                    color: appColors.white,
+                  child: GestureDetector(
+                    onTap: onPressNotification,
+                    child: Icon(
+                      Icons.notifications_active,
+                      color: appColors.white,
+                    ),
                   ),
                 ),
               ],

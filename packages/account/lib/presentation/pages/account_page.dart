@@ -32,23 +32,28 @@ class _AccountPageState extends State<AccountPage> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        AccountHeader(),
+        AccountHeader(
+          onPressNotification: () {
+            final tabsRouter = AutoTabsRouter.of(context);
+            tabsRouter.setActiveIndex(1);
+          },
+        ),
         Expanded(
           child: Padding(
             padding: EdgeInsets.all(AppDimens.slg),
             child: Column(
               spacing: AppDimens.md,
               children: [
-                SettingCard(child: SettingItem()),
+                SettingCard(child: SettingItem(title: '')),
                 SettingCard(
                   child: Column(
                     spacing: AppDimens.lg,
                     children: [
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
+                      SettingItem(title: '1'),
+                      SettingItem(title: '2'),
+                      SettingItem(title: '3'),
+                      SettingItem(title: '4'),
+                      SettingItem(title: '5'),
                     ],
                   ),
                 ),
@@ -56,11 +61,11 @@ class _AccountPageState extends State<AccountPage> {
                   child: Column(
                     spacing: AppDimens.lg,
                     children: [
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
-                      SettingItem(),
+                      SettingItem(title: '6'),
+                      SettingItem(title: '7'),
+                      SettingItem(title: '8'),
+                      SettingItem(title: '9'),
+                      SettingItem(title: '10'),
                     ],
                   ),
                 ),

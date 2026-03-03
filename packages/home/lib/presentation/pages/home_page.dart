@@ -1,6 +1,7 @@
 import 'package:app_logger/logger.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:core/core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:home/domain/entities/entities.dart';
@@ -34,10 +35,15 @@ class HomePage extends HookConsumerWidget {
       return null;
     }, []);
 
+    Future<void> refreshData() async {
+      homeCategory();
+    }
+
     return SafeArea(
       child: CustomScrollView(
         controller: homeViewModel.scrollController,
         slivers: [
+          CupertinoSliverRefreshControl(onRefresh: refreshData),
           HookConsumer(
             builder: (_, ref, _) {
               final isLoading = loadingHomeState.watchIsLoading;
@@ -51,12 +57,14 @@ class HomePage extends HookConsumerWidget {
               );
 
               if (isLoading && homeCategoryResult == null) {
-                return SliverFillRemaining(child: Center(child: Text('First')));
+                return SliverFillRemaining(
+                  child: Center(child: CircularProgressIndicator()),
+                );
               }
 
               if (homeCategory == null || homeCategory.isEmpty) {
                 return SliverFillRemaining(
-                  child: Center(child: Text('Seconds')),
+                  child: Center(child: CircularProgressIndicator()),
                 );
               }
 
