@@ -2,34 +2,30 @@ import 'package:account/presentation/widgets/setting_card.dart';
 import 'package:account/presentation/widgets/setting_item.dart';
 import 'package:app_logger/logger.dart';
 import 'package:auto_route/auto_route.dart';
+import 'package:core/core.dart';
 import 'package:device_info_app/device_info_app.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:theme/theme.dart';
 
 import '../widgets/header/account_header.dart';
 
 @RoutePage()
-class AccountPage extends StatefulWidget {
+class AccountPage extends HookConsumerWidget {
   const AccountPage({super.key});
 
   @override
-  State<AccountPage> createState() => _AccountPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    Future<void> getAppInfo() async {
+      final deviceInfo = await DeviceInfoApp.getDeviceInfo();
+      logger.e(deviceInfo!.toJson());
+    }
 
-class _AccountPageState extends State<AccountPage> {
-  Future<void> _getAppInfo() async {
-    final deviceInfo = await DeviceInfoApp.getDeviceInfo();
-    logger.e(deviceInfo!.toJson());
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getAppInfo();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+    useEffect(() {
+      getAppInfo();
+      return null;
+    });
     return Column(
       children: [
         AccountHeader(
@@ -44,7 +40,29 @@ class _AccountPageState extends State<AccountPage> {
             child: Column(
               spacing: AppDimens.md,
               children: [
-                SettingCard(child: SettingItem(title: '')),
+                SettingCard(
+                  child: Consumer(
+                    builder: (_, ref, _) {
+                      final locale = ref.watch(
+                        appStateProvider.select((value) => value.locale),
+                      );
+                      return SettingItem(
+                        title: '',
+                        onPress: () {
+                          if (locale.languageCode == 'vi') {
+                            ref
+                                .watch(appStateProvider.notifier)
+                                .changeLanguage(Locale('en', 'US'));
+                          } else {
+                            ref
+                                .watch(appStateProvider.notifier)
+                                .changeLanguage(Locale('vi', 'VN'));
+                          }
+                        },
+                      );
+                    },
+                  ),
+                ),
                 SettingCard(
                   child: Column(
                     spacing: AppDimens.lg,

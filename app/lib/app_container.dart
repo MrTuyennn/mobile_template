@@ -13,6 +13,7 @@ class AppContainer extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final loading = useLoadingState();
+    final locale = ref.watch(appStateProvider.select((value) => value.locale));
 
     Future<String> loadingState() async {
       return await loading.whileLoading(() async {
@@ -32,7 +33,7 @@ class AppContainer extends HookConsumerWidget {
     return MaterialApp.router(
       theme: AppTheme.light(isTablet: false).themeData,
       darkTheme: AppTheme.dark(isTablet: false).themeData,
-      locale: Locale('en', 'US'),
+      locale: locale,
       localizationsDelegates: L10n.localizationsDelegates,
       supportedLocales: L10n.supportedLocales,
       themeMode: ThemeMode.light,
