@@ -75,7 +75,7 @@
     },
     {
       "name": "characters",
-      "rootUri": "file:///Users/juncook/.pub-cache/hosted/pub.dev/characters-1.4.0",
+      "rootUri": "file:///Users/juncook/.pub-cache/hosted/pub.dev/characters-1.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
     },
@@ -153,9 +153,9 @@
     },
     {
       "name": "flutter",
-      "rootUri": "file:///Users/juncook/fvm/versions/3.38.3/packages/flutter",
+      "rootUri": "file:///Users/juncook/fvm/versions/3.41.6/packages/flutter",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "flutter_gen_core",
@@ -267,9 +267,9 @@
     },
     {
       "name": "material_color_utilities",
-      "rootUri": "file:///Users/juncook/.pub-cache/hosted/pub.dev/material_color_utilities-0.11.1",
+      "rootUri": "file:///Users/juncook/.pub-cache/hosted/pub.dev/material_color_utilities-0.13.0",
       "packageUri": "lib/",
-      "languageVersion": "2.17"
+      "languageVersion": "3.5"
     },
     {
       "name": "meta",
@@ -345,9 +345,9 @@
     },
     {
       "name": "sky_engine",
-      "rootUri": "file:///Users/juncook/fvm/versions/3.38.3/bin/cache/pkg/sky_engine",
+      "rootUri": "file:///Users/juncook/fvm/versions/3.41.6/bin/cache/pkg/sky_engine",
       "packageUri": "lib/",
-      "languageVersion": "3.8"
+      "languageVersion": "3.9"
     },
     {
       "name": "source_span",
@@ -471,8 +471,8 @@
     }
   ],
   "generator": "pub",
-  "generatorVersion": "3.10.1",
-  "flutterRoot": "file:///Users/juncook/fvm/versions/3.38.3",
-  "flutterVersion": "3.38.3",
+  "generatorVersion": "3.11.4",
+  "flutterRoot": "file:///Users/juncook/fvm/versions/3.41.6",
+  "flutterVersion": "3.41.6",
   "pubCache": "file:///Users/juncook/.pub-cache"
 }
